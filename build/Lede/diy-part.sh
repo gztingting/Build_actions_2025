@@ -65,6 +65,15 @@ export auto_kernel="true"
 export rootfs_size="512/2560"
 export kernel_usage="stable"
 
+# 替换一些插件，先删除
+rm -rf feeds/luci/themes/luci-theme-argon
+rm -rf feeds/luci/applications/luci-app-fileassistant
+rm -rf feeds/luci/applications/luci-app-rebootschedule
+
+# 自加插件
+git clone https://github.com/gztingting/luci-theme-argon-dark-mod feeds/luci/applications/luci-theme-argon-dark-mod
+git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule feeds/luci/applications/luci-app-rebootschedule
+git clone https://github.com/gztingting/luci-app-fileassistant feeds/luci/applications/luci-app-fileassistant
 
 # 修改插件名字
 grep -rl '"终端"' . | xargs -r sed -i 's?"终端"?"TTYD"?g'
@@ -76,7 +85,9 @@ grep -rl '"USB 打印服务器"' . | xargs -r sed -i 's?"USB 打印服务器"?"�
 grep -rl '"Web 管理"' . | xargs -r sed -i 's?"Web 管理"?"Web管理"?g'
 grep -rl '"管理权"' . | xargs -r sed -i 's?"管理权"?"改密码"?g'
 grep -rl '"带宽监控"' . | xargs -r sed -i 's?"带宽监控"?"监控"?g'
-
+sed -i 's/"control"/"system"/g' package/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
+chmod 755 feeds/luci/applications/luci-app-rebootschedule/root/etc/init.d/rebootschedule
+sed -i '7d' feeds/luci/applications/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
 
 # 整理固件包时候,删除您不想要的固件或者文件,让它不需要上传到Actions空间(根据编译机型变化,自行调整删除名称)
 cat >"$CLEAR_PATH" <<-EOF
