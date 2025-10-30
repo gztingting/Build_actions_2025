@@ -68,7 +68,6 @@ export kernel_usage="stable"
 # 替换一些插件，先删除
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-fileassistant
-rm -rf feeds/danshui/luci-app-fileassistant
 rm -rf feeds/luci/applications/luci-app-rebootschedule
 
 # 自加插件
@@ -86,7 +85,7 @@ grep -rl '"USB 打印服务器"' . | xargs -r sed -i 's?"USB 打印服务器"?"�
 grep -rl '"Web 管理"' . | xargs -r sed -i 's?"Web 管理"?"Web管理"?g'
 grep -rl '"管理权"' . | xargs -r sed -i 's?"管理权"?"改密码"?g'
 grep -rl '"带宽监控"' . | xargs -r sed -i 's?"带宽监控"?"监控"?g'
-sed -i 's/"control"/"system"/g' feeds/luci/applications/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
+sed -i 's/"control"/"system"/g' package/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
 chmod 755 feeds/luci/applications/luci-app-rebootschedule/root/etc/init.d/rebootschedule
 sed -i '7d' feeds/luci/applications/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
 
