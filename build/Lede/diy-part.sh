@@ -68,6 +68,7 @@ export kernel_usage="stable"
 # 替换一些插件，先删除
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-fileassistant
+rm -rf feeds/danshui/luci-app-fileassistant
 rm -rf feeds/luci/applications/luci-app-rebootschedule
 
 # 自加插件
