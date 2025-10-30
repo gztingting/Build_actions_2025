@@ -86,7 +86,7 @@ grep -rl '"USB 打印服务器"' . | xargs -r sed -i 's?"USB 打印服务器"?"�
 grep -rl '"Web 管理"' . | xargs -r sed -i 's?"Web 管理"?"Web管理"?g'
 grep -rl '"管理权"' . | xargs -r sed -i 's?"管理权"?"改密码"?g'
 grep -rl '"带宽监控"' . | xargs -r sed -i 's?"带宽监控"?"监控"?g'
-sed -i 's/"control"/"system"/g' package/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
+sed -i 's/"control"/"system"/g' feeds/luci/applications/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
 chmod 755 feeds/luci/applications/luci-app-rebootschedule/root/etc/init.d/rebootschedule
 sed -i '7d' feeds/luci/applications/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
 
