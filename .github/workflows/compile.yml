@@ -1,9 +1,9 @@
 #
-# 编译主程序,请勿修改文件名称（compile.yml）
+# The main compile program, do not modify the file name（compile.yml）
 #
 
 
-name: 编译主程序
+name: the main compile program
 on:
   push:
     branches:
@@ -21,7 +21,7 @@ env:
 
 jobs:
   build:
-    name: 编译 "${{matrix.target}}"
+    name: Compile "${{matrix.target}}"
     runs-on: ubuntu-22.04
     if: ${{ github.event.repository.owner.id }} == ${{ github.event.sender.id }}
     
@@ -33,7 +33,7 @@ jobs:
        target: [Lede]
 
     steps:
-    - name: 释放Ubuntu磁盘空间
+    - name: Free up Ubuntu disk space
       uses: danshui-git/free-disk-space@main
       with:
         remove_android: true
@@ -45,13 +45,13 @@ jobs:
         remove_packages: "azure-cli google-cloud-cli microsoft-edge-stable google-chrome-stable firefox postgresql* temurin-* *llvm* mysql* dotnet-sdk-*"
         remove_folders: "/usr/share/swift /usr/share/miniconda /usr/share/az* /usr/share/glade* /usr/local/lib/node_modules /usr/local/share/chromium /usr/local/share/powershell"
         
-    - name: 准备结束
+    - name: Prepare Finished
       uses: actions/checkout@v4
 
-    - name: 检测密匙/文件/版本
+    - name: Check the key/file/version
       uses: 281677160/common@mishi
         
-    - name: 部署编译环境
+    - name: Deploy the compilation environments
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -60,26 +60,26 @@ jobs:
         sudo mkdir -p /${{ env.DIY_WORK }}
         sudo chown ${USER}:${GROUPS} /${{ env.DIY_WORK }}
 
-    - name: 下载"${{matrix.target}}"源码
+    - name: Download the "${{matrix.target}}" Source codes
       working-directory: /${{ env.DIY_WORK }}
       run: |
         git clone -q -b "${REPO_BRANCH}" --single-branch "${REPO_URL}" openwrt
         ln -sf /${{ env.DIY_WORK }}/openwrt ${GITHUB_WORKSPACE}/openwrt
         bash ${{ env.COMMON_SH }} Diy_feedsconf
     
-    - name: 公告
+    - name: Announcement
       continue-on-error: true
       uses: 281677160/common@message
  
-    - name: 运行自定义文件和其他
+    - name: Running custom files and others
       uses: 281677160/common@need
         
-    - name: 编译信息
+    - name: Compilation Info
       continue-on-error: true
       if: env.COMPILATION_INFORMATION == 'true'
       uses: 281677160/common@message
         
-    - name: 缓存加速
+    - name: Cashing acceleration
       if: env.CACHEWRTBUILD_SWITCH == 'true'
       uses: stupidloud/cachewrtbuild@main
       with:
@@ -87,13 +87,13 @@ jobs:
         mixkey: "${{ env.TARGET_PROFILE }}"
         prefix: ${{ github.workspace }}/openwrt
         
-    - name: 下载软件包
+    - name: Download the software package
       id: package
       run: |
         cd openwrt
         make download -j8
     
-    - name: 开始编译固件
+    - name: Start compiling firmware
       id: compile
       if: steps.package.outcome == 'success'
       run: |
@@ -101,22 +101,22 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 V=s
 
-    - name: 自动打包armsr_rootfs_tar_gz
+    - name: Automatically package armsr_rootfs_tar_gz
       if: steps.compile.outcome == 'success' && env.ONLINE_FIRMWARE == 'true'
       uses: 281677160/common@aarch
 
-    - name: 整理固件文件夹(需配合diy-part.sh设定使用)
+    - name: Organize the firmware folder (requires diy-part.sh)
       continue-on-error: true
       if: steps.compile.outcome == 'success'
       run: |
         cd openwrt
         bash ${{ env.COMMON_SH }} Diy_firmware
 
-    - name: 发送[在线更新固件]至云端
+    - name: Upload firmware
       continue-on-error: true
       if: steps.compile.outcome == 'success' && env.UPDATE_FIRMWARE_ONLINE == 'true'
       uses: 281677160/common@cloud
         
-    - name: 上传,发布,信息通知
+    - name: Upload, publish, information notification.
       if: steps.compile.outcome == 'success'
       uses: 281677160/common@uploads
