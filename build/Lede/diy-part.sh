@@ -76,14 +76,14 @@ git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule feeds/luc
 git clone https://github.com/gztingting/luci-app-fileassistant feeds/luci/applications/luci-app-fileassistant
 
 # 修改插件名字
-grep -rl '"终端"' . | xargs -r sed -i 's?"终端"?"TTYD"?g'
-grep -rl '"TTYD 终端"' . | xargs -r sed -i 's?"TTYD 终端"?"TTYD"?g'
+#grep -rl '"终端"' . | xargs -r sed -i 's?"终端"?"TTYD"?g'
+#grep -rl '"TTYD 终端"' . | xargs -r sed -i 's?"TTYD 终端"?"TTYD"?g'
 grep -rl '"网络存储"' . | xargs -r sed -i 's?"网络存储"?"NAS"?g'
 grep -rl '"实时流量监测"' . | xargs -r sed -i 's?"实时流量监测"?"流量"?g'
 grep -rl '"KMS 服务器"' . | xargs -r sed -i 's?"KMS 服务器"?"KMS激活"?g'
 grep -rl '"USB 打印服务器"' . | xargs -r sed -i 's?"USB 打印服务器"?"打印服务"?g'
-grep -rl '"Web 管理"' . | xargs -r sed -i 's?"Web 管理"?"Web管理"?g'
-grep -rl '"管理权"' . | xargs -r sed -i 's?"管理权"?"改密码"?g'
+#grep -rl '"Web 管理"' . | xargs -r sed -i 's?"Web 管理"?"Web管理"?g'
+#grep -rl '"管理权"' . | xargs -r sed -i 's?"管理权"?"改密码"?g'
 grep -rl '"带宽监控"' . | xargs -r sed -i 's?"带宽监控"?"监控"?g'
 sed -i 's/"control"/"system"/g' package/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
 chmod 755 feeds/luci/applications/luci-app-rebootschedule/root/etc/init.d/rebootschedule
