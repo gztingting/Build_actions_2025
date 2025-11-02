@@ -1,0 +1,2 @@
+*/40 * * * * /etc/init.d/frp restart
+00 */4 * * * sync && echo 3 > /proc/sys/vm/drop_caches #rebootschedule

@@ -1,0 +1,159 @@
+
+config dnsmasq
+	option domainneeded '1'
+	option localise_queries '1'
+	option rebind_protection '1'
+	option rebind_localhost '1'
+	option local '/lan/'
+	option domain 'lan'
+	option expandhosts '1'
+	option cachesize '8192'
+	option authoritative '1'
+	option readethers '1'
+	option leasefile '/tmp/dhcp.leases'
+	option resolvfile '/tmp/resolv.conf.d/resolv.conf.auto'
+	option nonwildcard '1'
+	option localservice '1'
+	option ednspacket_max '1232'
+	list server '127.0.0.1#5333'
+	option noresolv '1'
+
+config dhcp 'lan'
+	option interface 'lan'
+	option dhcpv4 'server'
+	option ra_slaac '1'
+	list ra_flags 'managed-config'
+	list ra_flags 'other-config'
+	option ignore '1'
+
+config dhcp 'wan'
+	option interface 'wan'
+	option ignore '1'
+
+config odhcpd 'odhcpd'
+	option maindhcp '0'
+	option leasefile '/tmp/hosts/odhcpd'
+	option leasetrigger '/usr/sbin/odhcpd-update'
+	option loglevel '4'
+
+config srvhost
+	option srv '_vlmcs._tcp'
+	option target 'FlyStation'
+	option port '1688'
+	option class '0'
+	option weight '100'
+
+config host
+	option name 'Dingcon-iPhone13pm'
+	option dns '1'
+	option mac '48:35:2b:1e:ed:a0'
+	option ip '192.168.50.3'
+
+config host
+	option name 'Dingcon-iPhone7p'
+	option dns '1'
+	option mac 'bc:9f:ef:10:60:87'
+	option ip '192.168.50.4'
+
+config host
+	option name 'Dingcon-iWatch'
+	option dns '1'
+	option mac 'c4:84:66:08:98:5a'
+	option ip '192.168.50.5'
+
+config host
+	option name 'Louisa-iPhoneX'
+	option dns '1'
+	option mac '64:5a:ed:0a:08:22'
+	option ip '192.168.50.6'
+
+config host
+	option name 'DingDing-watch'
+	option dns '1'
+	option mac '7c:fd:82:b8:06:83'
+	option ip '192.168.50.7'
+
+config host
+	option name 'TV-Box'
+	option dns '1'
+	option mac '8c:5a:f8:eb:62:73'
+	option ip '192.168.50.8'
+
+config host
+	option name 'ipad-mini'
+	option dns '1'
+	option ip '192.168.50.9'
+	option mac '70:e7:2c:58:bb:53'
+
+config host
+	option name 'Dingcon-X270wifi'
+	option dns '1'
+	option mac '14:ab:c5:61:2f:51'
+	option ip '192.168.50.10'
+
+config host
+	option name 'Louisa-X270wifi'
+	option dns '1'
+	option mac '00:e1:8c:bf:29:3f'
+	option ip '192.168.50.11'
+
+config host
+	option name 'Louisa-X270lan'
+	option dns '1'
+	option mac '18:5e:0f:25:79:05'
+	option ip '192.168.50.13'
+
+config host
+	option name 'Dingcon-X270lan'
+	option dns '1'
+	option mac 'c8:5b:76:f3:54:fc'
+	option ip '192.168.50.14'
+
+config host
+	option name 'HuaweiPad'
+	option dns '1'
+	option ip '192.168.50.15'
+	option mac 'd2:3d:30:a7:de:f4'
+
+config host
+	option name 'Zigbee3.0Gateway'
+	option dns '1'
+	option mac '2c:d2:6b:68:6f:8d'
+	option ip '192.168.50.20'
+
+config host
+	option name 'Zigbee2.0Hub'
+	option dns '1'
+	option mac '80:00:00:01:68:ca'
+	option ip '192.168.50.21'
+
+config host
+	option name 'CamLivingRoom'
+	option dns '1'
+	option mac '58:b4:fc:87:6e:57'
+	option ip '192.168.50.22'
+
+config host
+	option name 'Mi-cooker'
+	option dns '1'
+	option mac 'b4:60:ed:2c:dc:40'
+	option ip '192.168.50.26'
+
+config host
+	option name 'Midea-WaterHeater'
+	option dns '1'
+	option mac 'a8:40:7d:27:94:6d'
+	option ip '192.168.50.27'
+
+config host
+	option name 'Mi-WaterPurifier'
+	option dns '1'
+	option mac '44:23:7c:6b:ef:a4'
+	option ip '192.168.50.28'
+
+config host
+	option name 'Simens-Dryer'
+	option dns '1'
+	option mac 'ac:5d:5c:9a:1f:a1'
+	option ip '192.168.50.29'
+
