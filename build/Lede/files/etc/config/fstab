@@ -1,6 +1,0 @@
-
-config mount
-	option enabled '1'
-	option uuid '1b5d55e8-62c4-4915-bb39-20d6031a8b78'
-	option target '/mnt/sdb1'
-
