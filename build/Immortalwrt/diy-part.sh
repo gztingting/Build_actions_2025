@@ -92,7 +92,8 @@ sed -i '7d' feeds/luci/applications/luci-app-rebootschedule/luasrc/controller/re
 
 # 整理固件包时候,删除您不想要的固件或者文件,让它不需要上传到Actions空间(根据编译机型变化,自行调整删除名称)
 cat >"$CLEAR_PATH" <<-EOF
-ppackages
+packages
+ipk.tar.gz
 config.buildinfo
 feeds.buildinfo
 sha256sums
