@@ -1,0 +1,25 @@
+
+config system
+	option hostname 'Flystation'
+	option timezone 'EST5EDT,M3.2.0,M11.1.0'
+	option ttylogin '0'
+	option log_size '128'
+	option urandom_seed '0'
+	option zonename 'America/Toronto'
+	option log_proto 'udp'
+	option conloglevel '8'
+	option cronloglevel '7'
+	option description 'Dingcon Dane'\''s Openwrt'
+	option notes 'Test-2025-11-09'
+
+config timeserver 'ntp'
+	option use_dhcp '0'
+	list server '0.ca.pool.ntp.org'
+	list server '0.pool.utoronto.ca'
+
+config imm_init
+	option lang '1'
+	option packet_steering '1'
+	option system_chn '1'
+	option opkg_mirror 'https://mirrors.vsean.net/openwrt'
+
