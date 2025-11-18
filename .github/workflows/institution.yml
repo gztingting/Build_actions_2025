@@ -30,7 +30,7 @@ env:
   REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
   GIT_REPOSITORY: ${{github.repository}}
   TONGBU_CANGKU: 1
-  TZ: Asia/Shanghai
+  TZ: America/New_York
 
 jobs:
   build:
