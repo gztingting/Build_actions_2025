@@ -9,12 +9,12 @@
 #
 #
 
-name: Immortalwrt-天灵
+name: Immortalwrt
 on:
   workflow_dispatch:
     inputs:
       REPO_BRANCH:
-        description: '天灵源码-请选择分支'
+        description: 'Immortalwrt Branch'
         required: true
         default: 'openwrt-24.10'
         type: choice
@@ -23,7 +23,7 @@ on:
           - 'openwrt-23.05'
           - 'master'
       CONFIG_FILE:
-        description: '请选择[seed文件夹内]的配置文件'
+        description: 'Select config from [seed files]'
         required: true
         default: 'x86_64'
         type: choice
@@ -31,44 +31,44 @@ on:
           - 'x86_64'
           - 'armsr_rootfs_tar_gz'
       INFORMATION_NOTICE:
-        description: 'Telegram或pushplus信息通知'
+        description: 'Telegram or pushplus message'
         required: true
         default: 'Telegram'
         type: choice
         options:
-          - '关闭'
+          - 'Mute'
           - 'Telegram'
           - 'Pushplus'
       KEEP_WORKFLOWS:
-        description: '清理workflows,保留[X]个runs不被清理'
+        description: 'clean up workflows, keeps [X] runs'
         required: true
         default: '50'
       KEEP_RELEASES:
-        description: '清理Releases,保留[X]个Releases不被清理'
+        description: 'clean up Releases, keeps [X] Releases'
         required: true
         default: '30'
       SSH_ACTION:
-        description: 'SSH远程配置固件'
+        description: 'SSH for customize'
         required: false
         default: 'false'
         type: boolean
       UPLOAD_FIRMWARE:
-        description: '上传固件到 Github Artifacts'
+        description: 'upload firmware to Github Artifacts'
         required: false
         default: 'true'
         type: boolean
       UPLOAD_RELEASE:
-        description: '发布固件到 Github Releases'
+        description: 'publish to Github Releases'
         required: false
         default: 'false'
         type: boolean
       CACHEWRTBUILD_SWITCH:
-        description: '缓存加速编译'
+        description: 'Cashing up'
         required: false
         default: 'true'
         type: boolean
       UPDATE_FIRMWARE_ONLINE:
-        description: '在线更新固/打包aarch64系列为img固件'
+        description: 'Online upgrade/package of aarch64 img firmware'
         required: false
         default: 'false'
         type: boolean
@@ -89,7 +89,7 @@ env:
 
 jobs:
   build:
-    name: 启动"${{ matrix.target }}-${{ github.event.inputs.REPO_BRANCH }}"触发编译
+    name: start "${{ matrix.target }}-${{ github.event.inputs.REPO_BRANCH }}" trigger comilation
     runs-on: ubuntu-22.04
     if: ${{ github.event.repository.owner.id }} == ${{ github.event.sender.id }}
     
@@ -103,13 +103,13 @@ jobs:
         # 请勿对 target: [Immortalwrt] 做任何修改
         
     steps:
-    - name: 准备结束
+    - name: Prepare finished
       uses: actions/checkout@v4
       
-    - name: 检测密匙/文件/版本
+    - name: Check Key/file/version
       uses: 281677160/common@mishi
 
-    - name: 部署编译环境
+    - name: Deploy the compilation environments
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -119,7 +119,7 @@ jobs:
         sudo mkdir -p /${{ env.DIY_WORK }}
         sudo chown $USER:$GROUPS /${{ env.DIY_WORK }}
     
-    - name: 下载"${{ matrix.target }}-${{ inputs.REPO_BRANCH }}"源码
+    - name: download "${{ matrix.target }}-${{ inputs.REPO_BRANCH }}" source code
       working-directory: /${{ env.DIY_WORK }}
       run: |
         git clone -q -b "${REPO_BRANCH}" --single-branch "${REPO_URL}" openwrt
@@ -127,20 +127,20 @@ jobs:
         bash ${{ env.COMMON_SH }} Diy_feedsconf
         echo "SHANG_CHUAN=true" >> ${GITHUB_ENV}
     
-    - name: 公告
+    - name: Announcement
       continue-on-error: true
       uses: 281677160/common@message
  
-    - name: 运行其他和SSH远程(make menuconfig)
+    - name: Connect the SSH (make menuconfig)
       id: info
       uses: 281677160/common@need
         
-    - name: 编译信息
+    - name: Compilation info
       continue-on-error: true
       if: env.COMPILATION_INFORMATION == 'true'
       uses: 281677160/common@message
     
-    - name: 清理releases和workflows
+    - name: Clean up releases and workflows
       continue-on-error: true
       uses: danshui-git/delete-releases-workflows@main
       with:
@@ -156,6 +156,6 @@ jobs:
         repo: ${{ github.repository }}
         gh_token: ${{ secrets.REPO_TOKEN }}
         
-    - name: 触发启动"${{ matrix.target }}"开始编译
+    - name: start to comile triggered by "${{ matrix.target }}"
       if: steps.info.outcome == 'success'
       uses: 281677160/common@trigger
