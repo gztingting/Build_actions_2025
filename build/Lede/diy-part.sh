@@ -71,10 +71,10 @@ rm -rf feeds/luci/applications/luci-app-fileassistant
 rm -rf feeds/luci/applications/luci-app-rebootschedule
 
 # 自加插件
-svn export https://github.com/gztingting/luci-theme-argon-dark-mod feeds/luci/applications/luci-theme-argon-dark-mod
-svn export https://github.com/sirpdboy/luci-theme-kucat feeds/luci/applications
-svn export https://github.com/DevOpenWRT-Router/luci-app-rebootschedule feeds/luci/applications/luci-app-rebootschedule
-svn export https://github.com/gztingting/luci-app-fileassistant feeds/luci/applications/luci-app-fileassistant
+#svn export https://github.com/gztingting/luci-theme-argon-dark-mod feeds/luci/applications/luci-theme-argon-dark-mod
+git clone https://github.com/sirpdboy/luci-theme-kucat feeds/luci/themes/
+git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule feeds/luci/applications/
+git clone https://github.com/gztingting/luci-app-fileassistant feeds/luci/applications/
 
 # 修改插件名字
 #grep -rl '"终端"' . | xargs -r sed -i 's?"终端"?"TTYD"?g'
