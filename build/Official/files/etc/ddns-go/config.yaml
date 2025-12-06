@@ -1,0 +1,56 @@
+dnsconf:
+    - name: ""
+      ipv4:
+        enable: false
+        gettype: url
+        url: https://api.ipify.org, https://ddns.oray.com/checkip, https://ip.3322.net, https://4.ipw.cn, https://v4.yinghualuo.cn/bejson
+        netinterface: br-lan
+        cmd: ""
+        domains:
+            - ""
+      ipv6:
+        enable: true
+        gettype: netInterface
+        url: https://api64.ipify.org, https://speed.neu6.edu.cn/getIP.php, https://v6.ident.me, https://6.ipw.cn, https://v6.yinghualuo.cn/bejson
+        netinterface: pppoe-wan
+        cmd: ""
+        ipv6reg: '@1'
+        domains:
+            - xdw.smartlocker.cc
+      dns:
+        name: cloudflare
+        id: ""
+        secret: 67cNa0d8nwa9GGbxHuRovi5K2uufgsaENOCc_MMj
+      ttl: ""
+    - name: ""
+      ipv4:
+        enable: false
+        gettype: url
+        url: https://api.ipify.org, https://ddns.oray.com/checkip, https://ip.3322.net, https://4.ipw.cn, https://v4.yinghualuo.cn/bejson
+        netinterface: br-lan
+        cmd: ""
+        domains:
+            - ""
+      ipv6:
+        enable: true
+        gettype: netInterface
+        url: https://api64.ipify.org, https://speed.neu6.edu.cn/getIP.php, https://v6.ident.me, https://6.ipw.cn, https://v6.yinghualuo.cn/bejson
+        netinterface: pppoe-wan
+        cmd: ""
+        ipv6reg: ""
+        domains:
+            - xiongduowei.dns.army
+      dns:
+        name: dynv6
+        id: ""
+        secret: VY2Z8fM8TYzCjLL77XZrb3HU-GPFsm
+      ttl: ""
+user:
+    username: root
+    password: $2a$10$ykKYWnhZGhz/jjplToQLROWECrABvkRYcOK/O1DtxS7w8d1SOM5zS
+webhook:
+    webhookurl: ""
+    webhookrequestbody: ""
+    webhookheaders: ""
+notallowwanaccess: false
+lang: en
