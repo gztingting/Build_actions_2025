@@ -72,7 +72,7 @@ rm -rf feeds/luci/applications/luci-app-rebootschedule
 
 # 自加插件
 #git clone https://github.com/gztingting/luci-theme-argon-dark-mod feeds/luci/applications/luci-theme-argon-dark-mod
-git clone https://github.com/sirpdboy/luci-theme-kucat feeds/luci/applications
+git clone https://github.com/sirpdboy/luci-theme-kucat feeds/luci/themes
 git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule feeds/luci/applications/luci-app-rebootschedule
 git clone https://github.com/gztingting/luci-app-fileassistant feeds/luci/applications/luci-app-fileassistant
 
