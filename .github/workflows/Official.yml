@@ -35,7 +35,7 @@ on:
       INFORMATION_NOTICE:
         description: 'Telegram或pushplus信息通知'
         required: true
-        default: '关闭'
+        default: 'Telegram'
         type: choice
         options:
           - '关闭'
@@ -47,7 +47,7 @@ on:
         default: '50'
       KEEP_RELEASES:
         description: '清理Releases,保留[X]个Releases不被清理'
-        required: true
+        required: false
         default: '30'
       SSH_ACTION:
         description: 'SSH远程配置固件'
@@ -66,7 +66,7 @@ on:
         type: boolean
       CACHEWRTBUILD_SWITCH:
         description: '缓存加速编译'
-        required: false
+        required: true
         default: 'true'
         type: boolean
       UPDATE_FIRMWARE_ONLINE:
@@ -87,7 +87,7 @@ env:
   PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-  TZ: Asia/Shanghai
+  TZ: America/New York
 
 jobs:
   build:
