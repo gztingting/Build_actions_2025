@@ -72,7 +72,7 @@ on:
       UPDATE_FIRMWARE_ONLINE:
         description: '在线更新固/打包aarch64系列为img固件'
         required: false
-        default: 'true'
+        default: 'false'
         type: boolean
 
 
@@ -87,7 +87,7 @@ env:
   PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
   TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-  TZ: America/New York
+  TZ: America/New_York
 
 jobs:
   build:
