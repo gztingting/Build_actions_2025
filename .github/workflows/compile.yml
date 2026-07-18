@@ -103,6 +103,8 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
+        # Restrict Node.js compilation to single thread
+        sed -i 's/$(MAKE)/$(MAKE) -j1/g' feeds/packages/lang/node/Makefile
         make -j$(nproc) || make -j1 V=s
 
     - name: Automatically package armsr_rootfs_tar_gz
