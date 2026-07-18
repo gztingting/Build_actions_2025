@@ -110,7 +110,7 @@ jobs:
         
     steps:
     - name: Prepare finished
-      uses: actions/checkout@v4.2.2
+      uses: actions/checkout@main
       
     - name: Check Key/file/version
       uses: 281677160/common@mishi
