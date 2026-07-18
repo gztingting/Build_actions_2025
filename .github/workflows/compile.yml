@@ -44,6 +44,12 @@ jobs:
         remove_docker_image: true
         remove_packages: "azure-cli google-cloud-cli microsoft-edge-stable google-chrome-stable firefox postgresql* temurin-* *llvm* mysql* dotnet-sdk-*"
         remove_folders: "/usr/share/swift /usr/share/miniconda /usr/share/az* /usr/share/glade* /usr/local/lib/node_modules /usr/local/share/chromium /usr/local/share/powershell"
+        sudo fallocate -l 8G /swapfile
+        sudo chmod 600 /swapfile
+        sudo mkswap /swapfile
+        sudo swapon /swapfile
+        sudo sysctl vm.swappiness=100
+        free -h
         
     - name: Prepare Finished
       uses: actions/checkout@main
@@ -103,7 +109,6 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        # Restrict Node.js compilation to single thread
         sed -i 's/$(MAKE)/$(MAKE) -j1/g' feeds/packages/lang/node/Makefile
         make -j$(nproc) || make -j1 V=s
 
