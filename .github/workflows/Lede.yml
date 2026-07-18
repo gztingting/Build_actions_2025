@@ -97,7 +97,7 @@ jobs:
   build:
     name: Start"${{ matrix.target }}-${{ github.event.inputs.REPO_BRANCH }}"trigger compilation
     runs-on: ubuntu-22.04
-    if: ${{ github.event.repository.owner.id }} == ${{ github.event.sender.id }}
+    if: github.event.repository.owner.id == github.event.sender.id
     
     env:
       FOLDER_NAME: ${{ matrix.target }}
