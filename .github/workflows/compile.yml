@@ -46,7 +46,7 @@ jobs:
         remove_folders: "/usr/share/swift /usr/share/miniconda /usr/share/az* /usr/share/glade* /usr/local/lib/node_modules /usr/local/share/chromium /usr/local/share/powershell"
         
     - name: Prepare Finished
-      uses: actions/checkout@v4.2.2
+      uses: actions/checkout@main
 
     - name: Check the key/file/version
       uses: 281677160/common@mishi
