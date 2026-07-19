@@ -63,12 +63,6 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /${{ env.DIY_WORK }}
         sudo chown ${USER}:${GROUPS} /${{ env.DIY_WORK }}
-        sudo fallocate -l 8G /swapfile
-        sudo chmod 600 /swapfile
-        sudo mkswap /swapfile
-        sudo swapon /swapfile
-        sudo sysctl vm.swappiness=100
-        free -h
 
     - name: Download the "${{matrix.target}}" Source codes
       working-directory: /${{ env.DIY_WORK }}
@@ -109,7 +103,6 @@ jobs:
       run: |
         cd openwrt
         echo -e "$(nproc) thread compile"
-        sed -i 's/$(MAKE)/$(MAKE) -j1/g' feeds/packages/lang/node/Makefile
         make -j$(nproc) || make -j1 V=s
 
     - name: Automatically package armsr_rootfs_tar_gz
