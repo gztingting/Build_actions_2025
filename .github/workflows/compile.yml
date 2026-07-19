@@ -1,9 +1,9 @@
 #
-# 编译主程序,请勿修改文件名称（compile.yml）
+# The main compile program, do not modify the file name（compile.yml）
 #
 
 
-name: 编译主程序
+name: the main compile program
 on:
   push:
     branches:
